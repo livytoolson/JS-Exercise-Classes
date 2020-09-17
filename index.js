@@ -170,7 +170,7 @@ class Instructor extends Lambdasian {
     return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    return `${student} received a perfect score on ${subject}`; 
+    return `${student.name} received a perfect score on ${subject}`; 
   }
 }
 
@@ -256,7 +256,7 @@ class ProjectManager extends Instructor {
     return `${this.name} announces to ${slackChannel}, @channel standy times`;
   }
   debugsCode(subject){ // how do I take in an object as a parameter
-    return `${this.name} debugs ${this.name}'s code on ${subject}`;
+    return `${this.name} debugs ${studentOne.name}'s code on ${subject}`;
   }
 }
 const pmOne = new ProjectManager ({
@@ -267,7 +267,7 @@ const pmOne = new ProjectManager ({
   favInstructor: 'Sean',
 });
 
-console.log()
+console.log(pmOne.debugsCode('Advanced Array Methods'));
 
 
 /*
