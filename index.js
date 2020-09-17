@@ -213,10 +213,10 @@ class Student extends Lambdasian{
     return `Loving ${this.favSubjects.join()}`;
   }
   PRAssignment(subject){
-    return `${Student.name} has submitted a PR for ${subject}`;
+    return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject){
-    return `${Student.name} has begun sprint challenge on ${subject}`;
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 
@@ -253,10 +253,10 @@ class ProjectManager extends Instructor {
     this.favInstructor = attributes.favInstructor;
   }
   standUp(slackChannel){
-    return `${ProjectManager.name} announces to ${slackChannel}, @channel standy times`;
+    return `${this.name} announces to ${slackChannel}, @channel standy times`;
   }
-  debugsCode(studentObj, subject){ // how do I take in an object as a parameter
-    return `${ProjectManager.name} debugs ${studentOne.name}'s code on ${subject}`;
+  debugsCode(subject){ // how do I take in an object as a parameter
+    return `${this.name} debugs ${this.name}'s code on ${subject}`;
   }
 }
 const pmOne = new ProjectManager ({
@@ -266,6 +266,8 @@ const pmOne = new ProjectManager ({
   gradClassName: 'CS1',
   favInstructor: 'Sean',
 });
+
+console.log()
 
 
 /*
