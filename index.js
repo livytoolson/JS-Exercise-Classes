@@ -41,8 +41,30 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+    }
 
+    eat(someFood) {
+      if(this.stomach.length < 10){
+        return this.stomach.push(someFood);
+      }
+    }
+
+    poop() {
+      return this.stomach = [];
+    }
+  
+    toString() {
+      return `${this.name}, ${this.age}`;
+    }
 }
+
+const personOne = new Person('Mary', 50);
+
+console.log(personOne.toString());
 
 /*
   TASK 2
@@ -59,8 +81,34 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
 
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+
+  drive(distance){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+      if (this.tank <= 0){
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    } else {
+      return `Keep driving!`;
+    }
+  }
 }
+
+const carOne = new Car('Tiguan', 23);
+
+carOne.fill(5);
+
+console.log(carOne);
+console.log(carOne.drive(200));
 
 /*
   TASK 3
@@ -74,9 +122,25 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {
 
+class Lambdasian {
+  constructor(attributes){
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+const student = new Lambdasian({
+  name: 'Livy',
+  age: 23,
+  location: 'San Diego',
+})
+
+console.log(student.speak);
 
 /*
   TASK 4
@@ -92,9 +156,33 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
 
+class Instructor extends Lambdasian {
+  constructor(attributes){
+    super(attributes);
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject){
+    return `${student} received a perfect score on ${subject}`; 
+  }
 }
+
+const instructorOne = new Instructor({
+  name: 'Brit',
+  age: 30,
+  location: 'Canada',
+  specialty: 'redux',
+  favLanguage: 'Python',
+  catchPhrase: 'Do not forget the homies',
+})
+
+console.log(instructorOne.demo('Web Development'));
+console.log(instructorOne.grade(student.name, 'Web Development'));
 
 /*
   TASK 5
@@ -111,9 +199,36 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(attributes){
+    super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = []; // does this need to be an empty array?
+  }
+  listSubjects.toString(){
+    return `Loving ${this.favSubjects}`;
+  }
+  PRAssignment(subject){
+    return `${student} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(){
+    return `${student} has begun sprint challenge on ${subject}`;
+  }
 }
+
+const studentOne = new Student ({
+  name: 'Drew',
+  age: '26',
+  location: 'Santa Monica',
+  previousBackground: 'Artist',
+  className: 'Web36',
+  favSubjects: 'HTML, CSS, JavaScript',
+});
+
+console.log(studentOne.listSubjects.toString());
+console.log(studentOne.PRAssignment(name, 'JavaScript'));
+console.log(studentOne.sprintChallenge(name, 'CSS'));
 
 /*
   TASK 6
