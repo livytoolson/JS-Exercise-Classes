@@ -212,11 +212,11 @@ class Student extends Lambdasian{
   listSubjects(){
     return `Loving ${this.favSubjects.join()}`;
   }
-  PRAssignment(student, subject){
-    return `${student} has submitted a PR for ${subject}`;
+  PRAssignment(subject){
+    return `${Student.name} has submitted a PR for ${subject}`;
   }
-  sprintChallenge(student, subject){
-    return `${student} has begun sprint challenge on ${subject}`;
+  sprintChallenge(subject){
+    return `${Student.name} has begun sprint challenge on ${subject}`;
   }
 }
 
@@ -230,8 +230,8 @@ const studentOne = new Student ({
 });
 
 console.log(studentOne.listSubjects());
-console.log(studentOne.PRAssignment(studentOne.name, 'JavaScript'));
-console.log(studentOne.sprintChallenge(studentOne.name, 'CSS'));
+console.log(studentOne.PRAssignment('JavaScript'));
+console.log(studentOne.sprintChallenge('CSS')); 
 
 /*
   TASK 6
@@ -253,26 +253,19 @@ class ProjectManager extends Instructor {
     this.favInstructor = attributes.favInstructor;
   }
   standUp(slackChannel){
-    return `${name} announces to ${slackChannel}, @channel standy times`;
+    return `${ProjectManager.name} announces to ${slackChannel}, @channel standy times`;
   }
   debugsCode(studentObj, subject){ // how do I take in an object as a parameter
-    return `${name} debugs ${studentOne.name}'s code on ${subject}`;
+    return `${ProjectManager.name} debugs ${studentOne.name}'s code on ${subject}`;
   }
 }
-
-// const projManOne = new ProjectManager{
-//   name: 'Livy',
-//   age: 23,
-//   location: 'SLC',
-//   specialty: 'HTML',
-//   favLanguage: 'JS',
-//   catchPhrase: 'Hello',
-//   gradClassName: 'Web 36',
-//   favInstructor: 'Sean',
-// }
-
-// console.log(ProjectManager.standUp(Web36));
-// console.log(ProjectManager.debugsCode(studentOne, 'HTML'));
+const pmOne = new ProjectManager ({
+  name: 'Jessica',
+  age: 22,
+  location: 'Las Vegas',
+  gradClassName: 'CS1',
+  favInstructor: 'Sean',
+});
 
 
 /*
