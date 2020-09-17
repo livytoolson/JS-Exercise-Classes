@@ -92,13 +92,15 @@ class Car {
     this.tank = this.tank + gallons;
   }
 
-  drive(distance){
-      this.odometer = this.odometer + distance;
-      this.tank = this.tank - (distance / this.milesPerGallon);
-      if (this.tank <= 0){
-      return `I ran out of fuel at ${this.odometer} miles!`;
+  drive(dist){
+    const drivableMiles = this.tank * this.milesPerGallon;
+    if(dist <= drivableMiles){
+      this.odometer = this.odometer + dist;
+      this.tank = this.tank - (dist / this.milesPerGallon);
     } else {
-      return `Keep driving!`;
+      this.odometer = this.odometer + drivableMiles;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles`;
     }
   }
 }
@@ -184,51 +186,52 @@ const instructorOne = new Instructor({
 console.log(instructorOne.demo('Web Development'));
 console.log(instructorOne.grade(student.name, 'Web Development'));
 
-/*
-  TASK 5
-    - Write a Student class extending Lambdasian.
-    - Its constructor takes a single argument -  an object with the following keys:
-        + All the keys used to initialize instances of Lambdasian.
-        + `previousBackground` i.e. what the Student used to do before Lambda School
-        + `className` i.e. CS132
-        + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
-    - The constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
-    - Student instances have the following methods:
-        + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
-        + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
-        + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
-*/
+// /*
+//   TASK 5
+//     - Write a Student class extending Lambdasian.
+//     - Its constructor takes a single argument -  an object with the following keys:
+//         + All the keys used to initialize instances of Lambdasian.
+//         + `previousBackground` i.e. what the Student used to do before Lambda School
+//         + `className` i.e. CS132
+//         + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
+//     - The constructor calls the parent constructor passing to it what it needs.
+//     - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
+//     - Student instances have the following methods:
+//         + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
+//         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
+//         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+// */
+
 class Student extends Lambdasian{
   constructor(attributes){
     super(attributes);
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
-    this.favSubjects = []; // does this need to be an empty array?
+    this.favSubjects = attributes.favSubjects;
   }
-  listSubjects.toString(){
-    return `Loving ${this.favSubjects}`;
+  listSubjects(){
+    return `Loving ${this.favSubjects.join()}`;
   }
-  PRAssignment(subject){
+  PRAssignment(student, subject){
     return `${student} has submitted a PR for ${subject}`;
   }
-  sprintChallenge(){
+  sprintChallenge(student, subject){
     return `${student} has begun sprint challenge on ${subject}`;
   }
 }
 
 const studentOne = new Student ({
   name: 'Drew',
-  age: '26',
+  age: 26,
   location: 'Santa Monica',
   previousBackground: 'Artist',
   className: 'Web36',
-  favSubjects: 'HTML, CSS, JavaScript',
+  favSubjects: ['HTML', 'CSS', 'JavaScript'],
 });
 
-console.log(studentOne.listSubjects.toString());
-console.log(studentOne.PRAssignment(name, 'JavaScript'));
-console.log(studentOne.sprintChallenge(name, 'CSS'));
+console.log(studentOne.listSubjects());
+console.log(studentOne.PRAssignment(studentOne.name, 'JavaScript'));
+console.log(studentOne.sprintChallenge(studentOne.name, 'CSS'));
 
 /*
   TASK 6
@@ -243,9 +246,34 @@ console.log(studentOne.sprintChallenge(name, 'CSS'));
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(attributes){
+    super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }
+  standUp(slackChannel){
+    return `${name} announces to ${slackChannel}, @channel standy times`;
+  }
+  debugsCode(studentObj, subject){ // how do I take in an object as a parameter
+    return `${name} debugs ${studentOne.name}'s code on ${subject}`;
+  }
 }
+
+// const projManOne = new ProjectManager{
+//   name: 'Livy',
+//   age: 23,
+//   location: 'SLC',
+//   specialty: 'HTML',
+//   favLanguage: 'JS',
+//   catchPhrase: 'Hello',
+//   gradClassName: 'Web 36',
+//   favInstructor: 'Sean',
+// }
+
+// console.log(ProjectManager.standUp(Web36));
+// console.log(ProjectManager.debugsCode(studentOne, 'HTML'));
+
 
 /*
   STRETCH PROBLEM (no tests!)
