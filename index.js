@@ -255,7 +255,7 @@ class ProjectManager extends Instructor {
   standUp(slackChannel){
     return `${this.name} announces to ${slackChannel}, @channel standy times`;
   }
-  debugsCode(subject){ // how do I take in an object as a parameter
+  debugsCode(studentOne, subject){ // how do I take in an object as a parameter
     return `${this.name} debugs ${studentOne.name}'s code on ${subject}`;
   }
 }
